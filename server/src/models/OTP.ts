@@ -1,7 +1,7 @@
 import { Schema, model, Document, Types } from 'mongoose';
 
 export interface IOTP extends Document {
-  user: Types.ObjectId;
+  email: string;
   otp: string;
   expirationTime: Date;
   createdAt: Date;
@@ -10,7 +10,7 @@ export interface IOTP extends Document {
 
 const otpSchema = new Schema<IOTP>(
   {
-    user: { type: Schema.Types.ObjectId, ref: 'User', required: true },
+    email: { type: String, required: true },
     otp: { type: String, required: true },
     expirationTime: { type: Date, required: true },
   },
