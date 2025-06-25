@@ -72,11 +72,11 @@ export const loginUser = async (req: Request, res: Response) => {
         }
         const user = await User.findOne({ email });
         if (!user)
-            return res.status(401).json({ message: 'Invalid email.' });
+            return res.status(401).json({ success : false, message: 'Invalid email.' });
 
         const isMatch = await bcrypt.compare(password, user.passwordHash);
         if (!isMatch)
-            return res.status(401).json({ message: 'Invalid password.' });
+            return res.status(401).json({ success : false, message: 'Invalid password.' });
 
         const token = generateToken(user);
 
@@ -92,6 +92,14 @@ export const loginUser = async (req: Request, res: Response) => {
         });
     } catch (error) {
         res.status(500).json({ message: 'Login failed', error: (error as Error).message });
+    }
+};
+
+export const sendotp = async (req: Request, res: Response) => {
+    try {
+        
+    } catch (error) {
+        
     }
 };
 
